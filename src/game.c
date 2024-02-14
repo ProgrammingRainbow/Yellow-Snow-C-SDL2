@@ -1,7 +1,6 @@
 #include "game.h"
 #include "initialize.h"
 #include "load_media.h"
-#include <SDL2/SDL_mixer.h>
 
 bool game_new(struct Game **game) {
     *game = calloc(1, sizeof(struct Game));

@@ -1,17 +1,13 @@
-#include "main.h"
 #include "game.h"
 
 int main(void) {
-    bool err = false;
-
     struct Game *game = NULL;
 
-    err = game_new(&game);
-    if (!err) {
-        err = game_run(game);
+    if (game_new(&game) || game_run(game)) {
+        game_free(&game);
+        return EXIT_FAILURE;
     }
 
     game_free(&game);
-
-    return err;
+    return EXIT_SUCCESS;
 }
