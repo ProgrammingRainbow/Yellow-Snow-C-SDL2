@@ -1,5 +1,6 @@
 #include "game.h"
 #include "initialize.h"
+#include "load_media.h"
 
 bool game_new(struct Game **game) {
     *game = calloc(1, sizeof(struct Game));
@@ -9,7 +10,11 @@ bool game_new(struct Game **game) {
     }
     struct Game *g = *game;
 
-    if (game_initilize(g)) {
+    if (game_initialize(g)) {
+        return true;
+    }
+
+    if (game_load_media(g)) {
         return true;
     }
 
@@ -19,6 +24,9 @@ bool game_new(struct Game **game) {
 void game_free(struct Game **game) {
     if (*game) {
         struct Game *g = *game;
+
+        SDL_DestroyTexture(g->background_image);
+        g->background_image = NULL;
 
         SDL_DestroyRenderer(g->renderer);
         g->renderer = NULL;
@@ -52,8 +60,10 @@ bool game_run(struct Game *g) {
                 break;
             }
         }
-
         SDL_RenderClear(g->renderer);
+
+        SDL_RenderCopy(g->renderer, g->background_image, NULL,
+                       &g->background_rect);
 
         SDL_RenderPresent(g->renderer);
 
