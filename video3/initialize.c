@@ -1,16 +1,8 @@
 #include "initialize.h"
 
 bool game_initilize(struct Game *g) {
-
     if (SDL_Init(SDL_FLAGS)) {
         fprintf(stderr, "Error initializing SDL: %s\n", SDL_GetError());
-        return true;
-    }
-
-    int img_flags = IMG_INIT_PNG;
-    int img_init = IMG_Init(img_flags);
-    if ((img_init & img_flags) != img_flags) {
-        fprintf(stderr, "Error initializing SDL_image: %s\n", IMG_GetError());
         return true;
     }
 
@@ -32,8 +24,9 @@ bool game_initilize(struct Game *g) {
     if (icon_surf) {
         SDL_SetWindowIcon(g->window, icon_surf);
         SDL_FreeSurface(icon_surf);
+        icon_surf = NULL;
     } else {
-        fprintf(stderr, "Error creating icon surface: %s\n", SDL_GetError());
+        fprintf(stderr, "Error loading icon Surface: %s\n", IMG_GetError());
         return true;
     }
 

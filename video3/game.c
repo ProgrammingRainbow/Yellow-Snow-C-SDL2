@@ -22,25 +22,26 @@ bool game_new(struct Game **game) {
 }
 
 void game_free(struct Game **game) {
-    struct Game *g = *game;
+    if (*game) {
+        struct Game *g = *game;
 
-    SDL_DestroyTexture(g->background_image);
-    g->background_image = NULL;
-    SDL_DestroyRenderer(g->renderer);
-    g->renderer = NULL;
-    SDL_DestroyWindow(g->window);
-    g->window = NULL;
+        SDL_DestroyTexture(g->background_image);
+        g->background_image = NULL;
 
-    IMG_Quit();
-    SDL_Quit();
+        SDL_DestroyRenderer(g->renderer);
+        g->renderer = NULL;
+        SDL_DestroyWindow(g->window);
+        g->window = NULL;
 
-    free(g);
-    g = NULL;
-    *game = NULL;
+        SDL_Quit();
+
+        free(g);
+        g = NULL;
+        *game = NULL;
+    }
 }
 
 bool game_run(struct Game *g) {
-
     while (true) {
         while (SDL_PollEvent(&g->event)) {
             switch (g->event.type) {
