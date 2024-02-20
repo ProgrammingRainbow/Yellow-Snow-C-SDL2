@@ -77,7 +77,7 @@ double fps_update(struct Fps *f) {
     if (f->fps_display) {
         f->fps_counter++;
         if (fps_time_since(f->fps_last_time, NULL) > 1000) {
-            printf("%i, %f\n", f->fps_counter, f->carry_delay);
+            printf("%i\n", f->fps_counter);
             f->fps_counter = 0;
             f->fps_last_time += 1000;
         }
