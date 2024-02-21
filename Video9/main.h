@@ -17,7 +17,7 @@
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
 #define WINDOW_ICON "images/yellow.png"
-#define FONT_SIZE 24
-#define TARGET_FPS 60
+#define FONT_SIZE 23
+#define TARGET_FPS 6000
 
 #endif

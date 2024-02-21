@@ -1,4 +1,5 @@
 #include "game.h"
+#include "fps.h"
 #include "initialize.h"
 #include "load_media.h"
 
