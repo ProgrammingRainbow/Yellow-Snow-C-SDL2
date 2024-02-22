@@ -23,7 +23,6 @@ struct Game {
     bool playing;
     bool pause_music;
     double delta_time;
-    SDL_TimerID reset_timer_id;
     struct Player *player;
     struct Flake *flakes;
     struct Score *score;

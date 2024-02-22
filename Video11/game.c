@@ -51,6 +51,8 @@ bool game_new(struct Game **game) {
         return true;
     }
 
+    // g->playing = true;
+
     return false;
 }
 
@@ -161,7 +163,7 @@ bool check_collision(struct Game *g) {
 void pause_music(struct Game *g) {
     if (g->pause_music) {
         g->pause_music = false;
-        if (g->playing || g->title->show_title) {
+        if (g->playing) {
             Mix_ResumeMusic();
         }
     } else {
@@ -215,6 +217,7 @@ bool game_run(struct Game *g) {
 
         if (g->playing) {
             player_update(g->player, g->delta_time);
+
             if (check_collision(g)) {
                 return true;
             }

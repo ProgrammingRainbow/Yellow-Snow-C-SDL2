@@ -5,10 +5,9 @@
 
 struct Title {
     SDL_Renderer *renderer;
-    TTF_Font *font;
-    SDL_Surface *text_surf;
-    SDL_Surface *target_surf;
     SDL_Texture *image;
+    SDL_Surface *text_surf;
+    TTF_Font *font;
     SDL_Rect rect;
     double pos_y;
     double target_y;
