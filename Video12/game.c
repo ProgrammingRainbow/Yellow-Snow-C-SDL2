@@ -2,7 +2,7 @@
 #include "initialize.h"
 #include "load_media.h"
 #include "main.h"
-#include "title.h"
+#include <SDL2/SDL_timer.h>
 
 bool check_collision(struct Game *g);
 bool handle_collision(struct Game *g, struct Flake *f);
@@ -54,7 +54,7 @@ bool game_new(struct Game **game) {
         return true;
     }
 
-    g->show_title = true;
+    // g->playing = true;
 
     return false;
 }
@@ -153,7 +153,8 @@ bool handle_collision(struct Game *g, struct Flake *f) {
         Mix_PauseMusic();
         Mix_PlayChannel(-1, g->hit_sound, 0);
         g->playing = false;
-        g->reset_timer_id = SDL_AddTimer(5000, game_reset_timer, NULL);
+        g->reset_timer_id =
+            SDL_AddTimer(GAME_RESET_TIME, game_reset_timer, NULL);
     }
 
     return false;
@@ -244,6 +245,7 @@ bool game_run(struct Game *g) {
 
         if (g->playing) {
             player_update(g->player, g->delta_time);
+
             if (check_collision(g)) {
                 return true;
             }

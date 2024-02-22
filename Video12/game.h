@@ -21,7 +21,6 @@ struct Game {
     Mix_Chunk *hit_sound;
     Mix_Music *music;
     bool playing;
-    bool show_title;
     bool pause_music;
     double delta_time;
     SDL_TimerID reset_timer_id;

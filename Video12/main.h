@@ -5,6 +5,7 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
+#include <math.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -20,5 +21,6 @@
 #define FONT_SIZE 23
 #define TARGET_FPS 60
 #define GAME_RESET_EVENT SDL_USEREVENT
+#define GAME_RESET_TIME 5000
 
 #endif
